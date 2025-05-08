@@ -1,0 +1,290 @@
+/* style_escola.css */
+:root {
+    --primary-blue: #007bff;         /* Azul vibrante principal */
+    --secondary-blue: #0056b3;       /* Azul mais escuro para detalhes e hover */
+    --light-blue-accent: #5dade2;     /* Um azul mais suave para acentos */
+    --very-light-blue-bg: #e7f3ff;   /* Fundo de seção bem claro */
+    
+    --sidebar-bg: #1c3a69;           /* Azul marinho escuro para a sidebar */
+    --sidebar-header-bg: #152b4f;    /* Um pouco mais escuro para o header da sidebar */
+    --sidebar-link-color: #e0e7ef;   /* Cor de link clara na sidebar */
+    --sidebar-link-hover-bg: var(--secondary-blue);
+    --sidebar-link-active-bg: var(--primary-blue);
+
+    --text-color: #343a40;           /* Cor de texto principal (cinza escuro) */
+    --light-text-on-dark: #f8f9fa;   /* Texto claro para fundos escuros */
+    --header-bg: #ffffff;            /* Cabeçalho principal branco */
+    --footer-bg: var(--sidebar-bg);  /* Rodapé com o mesmo azul da sidebar */
+
+    --sidebar-width: 260px;
+    --border-radius-std: 6px; /* Raio de borda padrão */
+}
+
+body {
+    font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fonte mais moderna */
+    line-height: 1.7;
+    margin: 0;
+    background-color: #f0f4f8; /* Fundo geral um pouco azulado/acinzentado */
+    color: var(--text-color);
+    font-size: 16px;
+}
+
+/* Sidebar Navigation */
+.sidebar {
+    width: var(--sidebar-width);
+    position: fixed;
+    top: 0;
+    left: calc(-1 * var(--sidebar-width)); /* Começa escondida */
+    height: 100vh;
+    background-color: var(--sidebar-bg);
+    padding-top: 0;
+    overflow-y: auto;
+    z-index: 1000;
+    transition: left 0.3s ease-in-out;
+    box-shadow: 3px 0 10px rgba(0,0,0,0.15);
+}
+
+.sidebar.open {
+    left: 0;
+}
+
+.sidebar-header {
+    padding: 20px;
+    background-color: var(--sidebar-header-bg);
+    color: var(--light-text-on-dark);
+    text-align: center;
+}
+
+.sidebar-header h3 {
+    margin: 0;
+    font-size: 1.3em;
+    font-weight: 500;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 10px 0;
+    margin: 0;
+}
+
+.sidebar ul li a {
+    display: block;
+    padding: 13px 25px;
+    color: var(--sidebar-link-color);
+    text-decoration: none;
+    font-size: 0.95em;
+    border-left: 4px solid transparent; /* Para efeito no hover/active */
+    transition: background-color 0.2s ease, border-left-color 0.2s ease, padding-left 0.2s ease;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li a:focus {
+    background-color: var(--sidebar-link-hover-bg);
+    color: #fff;
+    border-left-color: var(--light-blue-accent);
+    padding-left: 30px;
+}
+.sidebar ul li a.active {
+    background-color: var(--sidebar-link-active-bg);
+    color: #fff;
+    font-weight: bold;
+    border-left-color: #fff; /* Borda branca no link ativo */
+}
+
+/* Menu Toggle Button (Hamburger) */
+.menu-toggle {
+    display: none;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    background-color: var(--sidebar-bg);
+    color: var(--light-text-on-dark);
+    border: none;
+    padding: 10px 14px;
+    font-size: 1.6em;
+    cursor: pointer;
+    z-index: 1001;
+    border-radius: var(--border-radius-std);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Content Wrapper */
+.content-wrapper {
+    transition: margin-left 0.3s ease-in-out;
+    margin-left: 0; 
+}
+
+.page-header {
+    background-color: var(--header-bg);
+    color: var(--text-color);
+    padding: 20px 30px;
+    border-bottom: 1px solid #dee2e6;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    padding-left: 70px; /* Espaço para o botão hamburger em telas menores */
+    display: flex;
+    align-items: center;
+}
+
+.header-logo {
+    height: 200px; /* Ajuste a altura do logo conforme necessário */
+    /* width: auto; será automático para manter a proporção, mas pode definir uma largura máxima se quiser */
+    max-width: 150px; /* Exemplo de largura máxima */
+    margin-right: 20px; /* Espaço entre o logo e o bloco de texto */
+    object-fit: contain; /* Garante que a imagem caiba sem distorcer */
+}
+
+.header-text-content {
+    flex-grow: 1; /* Faz este container ocupar o espaço restante */
+}
+
+.header-text-content h1 {
+    margin: 0;
+    font-size: 1.9rem;
+    color: var(--primary-blue);
+    font-weight: 700;
+    /* Seus estilos existentes de .page-header h1 */
+    /* Ex: color: var(--primary-blue); font-size: 1.9rem; etc. */
+    margin-bottom: 2px; /* Ajuste fino se necessário */
+}
+
+.header-text-content p {
+    margin: 5px 0 0;
+    font-size: 1rem;
+    color: #555;
+    font-style: italic;
+    /* Seus estilos existentes de .page-header p */
+    /* Ex: font-size: 1rem; color: #555; etc. */
+    margin-top: 0; /* Ajuste fino se necessário */
+}
+
+/*.page-header h1 {
+    margin: 0;
+    font-size: 1.9rem;
+    color: var(--primary-blue);
+    font-weight: 700;
+}
+.page-header p {
+    margin: 5px 0 0;
+    font-size: 1rem;
+    color: #555;
+    font-style: italic;
+}*/
+
+main {
+    padding: 30px;
+    background-color: #ffffff; 
+    min-height: calc(100vh - 150px); 
+}
+
+section {
+    margin-bottom: 45px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #e9ecef;
+}
+section:last-of-type {
+    border-bottom: none;
+}
+
+h2 {
+    font-size: 1.8rem;
+    color: var(--primary-blue);
+    margin-top: 0;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid var(--primary-blue);
+    font-weight: 600;
+}
+h3 {
+    font-size: 1.4rem;
+    color: var(--secondary-blue);
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.diagram-image { /* Reutilizando esta classe para imagens de exemplo */
+    display: block;
+    margin: 25px auto;
+    max-width: 100%; 
+    height: auto;
+    border: 1px solid #ced4da;
+    padding: 6px;
+    border-radius: var(--border-radius-std);
+    background-color: #f8f9fa;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+}
+/* Estilos para a galeria de fotos */
+.galeria-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Espaçamento entre os itens da galeria */
+    justify-content: center;
+}
+.galeria-item {
+    flex-basis: calc(50% - 20px); /* Duas colunas em telas maiores, ajustando pelo gap */
+    max-width: calc(50% - 20px);
+    text-align: center;
+    background-color: var(--very-light-blue-bg);
+    padding: 15px;
+    border-radius: var(--border-radius-std);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.galeria-item img {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+.galeria-item p {
+    font-size: 0.9em;
+    color: var(--text-color);
+    margin-bottom: 0;
+}
+
+
+.page-footer {
+    background-color: var(--footer-bg);
+    color: var(--sidebar-link-color);
+    text-align: center;
+    padding: 25px 30px;
+    font-size: 0.9em;
+}
+
+/* === Media Queries para Responsividade === */
+
+@media (min-width: 993px) {
+    .menu-toggle {
+        display: none; 
+    }
+    .sidebar {
+        left: 0; 
+    }
+    .content-wrapper {
+        margin-left: var(--sidebar-width); 
+    }
+    .page-header {
+         padding-left: 30px; 
+    }
+}
+
+@media (max-width: 992px) {
+    .menu-toggle {
+        display: block; 
+    }
+}
+
+/* Ajustes para a galeria em telas menores */
+@media (max-width: 768px) {
+    .page-header h1 { font-size: 1.6rem; }
+    main { padding: 20px 15px; }
+    .page-header { padding: 15px 15px 15px 70px; }
+    h2 { font-size: 1.6rem; }
+    h3 { font-size: 1.3rem; }
+
+    .galeria-item {
+        flex-basis: calc(100% - 20px); /* Uma coluna em telas menores */
+        max-width: calc(100% - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+     .page-header h1 { font-size: 1.4rem; }
+}
